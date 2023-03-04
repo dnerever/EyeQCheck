@@ -1,16 +1,16 @@
-from cv2 import *  #pip install opencv-contrib-python
+import cv2  #pip install opencv-contrib-python
 import numpy as np
 
 cam_port = 0
-cam = VideoCapture(cam_port)
+cam = cv2.VideoCapture(cam_port)
 
 result, image = cam.read()
 
-if results:
-    imshow("testImage", image)
-    imwrite("testImage.png", image)
-    waitKey(0)
-    destroyWindow("testImage")
+if result:
+    cv2.imshow("testImage", image)
+    cv2.imwrite("testImage.png", image)
+    cv2.waitKey(0)
+    cv2.destroyWindow("testImage")
 
 else:
     print("No image. Try again")
