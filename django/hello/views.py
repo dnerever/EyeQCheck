@@ -80,7 +80,16 @@ def startVisionTest(request):
     #read saved distance
     finalDistance = max(userDistance.objects.all(), key=id).distance
     # print("Side length:" + str(finalDistance))
-    context = {"user_distance": finalDistance}
+    scale = 2
+    eyeChartHeight = 698
+    eyeChartWidth = 67
+    eyeChartHeightScaled = eyeChartHeight * scale
+    eyeChartWidthScaled = eyeChartWidth * scale
+    context = {
+        "user_distance": finalDistance,
+        "scaled_height": eyeChartHeightScaled,
+        "scaled_width": eyeChartWidthScaled,
+        }
     return render(request, 'hello/visionTest.html', context)
 
 
