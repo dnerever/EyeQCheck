@@ -1,9 +1,10 @@
 # EyeQCheck
 
-# Prerequisite
+
+## Prerequisite
 1. Print referenceSquare.pdf
 
-# How to run (Linux)
+## How to run (Linux)
 1. navigate inside django/
 2. sudo apt-get install python3-venv    # If needed
 3. python3 -m venv .venv
