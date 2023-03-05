@@ -6,5 +6,6 @@ urlpatterns = [
     # path("/your_name/", ),
     # path("", views.get_name, name="get_name/"),
     path("takePhoto", views.take_photo, name="takePhoto"),
-    path("home", views.home, name="homePage")
+    path("home", views.home, name="homePage"),
+    # path("startVisionTest", views.startVisionTest, name="startVisionTest"),
 ]

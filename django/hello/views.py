@@ -2,13 +2,15 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from json import dumps
 import numpy as np
 import time
 import cv2
+import math
 
 from .forms import takePhoto
-from .forms import UserDistanceValue
 from .models import userDistance
+from .forms import UserDistanceValue
 
 def take_photo(request):
     if request.method == 'POST':
@@ -61,21 +63,25 @@ def take_photo(request):
         #-----------square Scan end -----------
         distForm = UserDistanceValue(request.POST)
         obj = userDistance()
-        obj.distance = 120
+        # obj.distance = (width + height)/2       #saves the distance as an average of the box height & width
+        obj.distance = math.sqrt(max_area)
         obj.save()
-        # if distForm.is_valid():
-        #     obj = userDistance()
-        #     obj.distance = 120
-        #     obj.save()
-        # return render(request, 'hello/home.html')
+        print("-------------Saved distance-------------")
+
+        # return render(request, 'hello/visionTest.html')
+        return startVisionTest(request)
     else:
+        print("-------------Square not found!-------------")
         form = takePhoto(request.POST)
     
     return render(request, 'hello/home.html', {'form': form})
 
-
-# def startVisionTest(request):
-#     return redirect('hello/')
+def startVisionTest(request):
+    #read saved distance
+    finalDistance = max(userDistance.objects.all(), key=id).distance
+    # print("Side length:" + str(finalDistance))
+    context = {"user_distance": finalDistance}
+    return render(request, 'hello/visionTest.html', context)
 
 
 def home(request):
