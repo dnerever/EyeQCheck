@@ -1,0 +1,4 @@
+#temporary image files
+*.png
+*.jpg
+**/__pycache__
