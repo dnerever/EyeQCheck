@@ -1,4 +1,4 @@
 #temporary image files
 *.png
 *.jpg
-*/__pycache__/*
+**/__pycache__
