@@ -7,6 +7,9 @@ class NameForm(forms.Form):
 class takePhoto(forms.Form):
     buttonPressed = forms.BooleanField(label='buttonPressed')
 
+class UserDistanceValue(forms.Form):
+    distance = forms.IntegerField(label='distance')
+
 # class saveImage(forms.Form):
 #     image = models.ImageField(upload_to= )
 
