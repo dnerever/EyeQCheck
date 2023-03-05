@@ -15,16 +15,15 @@
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/home">EyeQTest</a>
-    </nav> -->
     <div class="mt-md-5">
         <div class="pl-sm-5">
             <div class="pr-sm-5">
                 <br>
-                <h3 align="center">Welcome to EyeQTest!</h3>
+                <h3 align="center">Taking Vision test</h3>
                 <br>
-                <img class="mx-auto d-block" src="{% static 'testOutput.png' %}" alt="photo of user" align="center" width="600" height="500">
+                <h3 align="center">User distance from camera: {{ user_distance }} (ft)</h3>
+                <img class="mx-auto d-block" src="{% static 'testCapture.png' %}" alt="photo of user with capture of the reference square" align="center" width="600" height="500">
+                <img class="mx-auto d-block" src="{% static 'eyeChart.png' %}" alt="photo of user with capture of the reference square" align="center" width={{ scaled_height }} height={{ scaled_width }}>
                 <hr>
                 <form action="takePhoto" method="POST">
                     {% csrf_token %}
