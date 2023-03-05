@@ -14,10 +14,10 @@ from .forms import UserDistanceValue
 
 def take_photo(request):
     if request.method == 'POST':
+        time.sleep(3)       # wait 3 seconds before taking photo
         form = takePhoto(request.POST)      #photo button has been pressed
         cam_port = 0
         cam = cv2.VideoCapture(cam_port)
-        # time.sleep(1)
         result, image = cam.read()
         # filename = './media/testOutput.png'     #saves capture to /django/media folder
         filename = './hello/static/testOutput.png'     #saves capture to /django/hello/static folder
