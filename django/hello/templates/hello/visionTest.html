@@ -22,8 +22,11 @@
                 <h3 align="center">Taking Vision test</h3>
                 <br>
                 <h3 align="center">User distance from camera: {{ user_distance }} (ft)</h3>
+                <br>
                 <img class="mx-auto d-block" src="{% static 'testCapture.png' %}" alt="photo of user with capture of the reference square" align="center" width="600" height="500">
-                <img class="mx-auto d-block" src="{% static 'eyeChart.png' %}" alt="photo of user with capture of the reference square" align="center" width={{ scaled_height }} height={{ scaled_width }}>
+                <br>
+                <img class="mx-auto d-block" src="{% static 'eyeChart.png' %}" alt="eye exam chart" align="center" width={{ scaled_height }} height={{ scaled_width }}>
+                <br>
                 <hr>
                 <form action="takePhoto" method="POST">
                     {% csrf_token %}
