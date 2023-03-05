@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Multiplication</title>
+    <title>EyeQTest</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -15,24 +15,19 @@
 </head>
 
 <body>
+    <!-- <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home">EyeQTest</a>
+    </nav> -->
     <div class="mt-md-5">
         <div class="pl-sm-5">
             <div class="pr-sm-5">
                 <br>
-                <!-- <form action="get_name" method="POST">
-                    {% csrf_token %}
-                    <input id="get_name" type="text" name="get_name" value="{{ form }}">
-                    <input type="submit" value="OK">
-                    <!-- <button type="submit">Take photo</button> -->
-                <!-- </form> -->
                 <h3 align="center">Welcome to EyeQTest!</h3>
                 <br>
-                <img src="{% static 'output.png' %}" alt="testing image1" width="600" height="500">
+                <img class="mx-auto d-block" src="{% static 'testOutput.png' %}" alt="testing image1" align="center" width="600" height="500">
                 <hr>
                 <form action="takePhoto" method="POST">
                     {% csrf_token %}
-                    <!-- <button type="submit" class="btn btn-success">Click Button</button> -->
-                    <!-- <input id="takePhoto" type="bool" name="takePhoto" value="{{ form }}"> -->
                     <input type="submit" name="takePhoto" value="Take Photo!">
                 </form>
                 <br>

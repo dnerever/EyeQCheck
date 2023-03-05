@@ -3,12 +3,38 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import time
-
-import cv2  #pip install opencv-contrib-python
-import numpy as np
+import cv2
 
 
-# Create your views here.
+
+from .forms import takePhoto
+
+def take_photo(request):
+    if request.method == 'POST':
+        form = takePhoto(request.POST)      #photo button has been pressed
+        cam_port = 0
+        cam = cv2.VideoCapture(cam_port)
+        # time.sleep(1)
+        result, image = cam.read()
+
+        if result:
+            # filename = './media/testOutput.png'     #saves image to /django/media folder
+            filename = './hello/static/testOutput.png'     #saves image to /django/hello/static folder
+            cv2.imwrite(filename, image)
+        else:
+            print("No image. Try again")
+
+        return render(request, 'hello/home.html')
+    else:
+        form = takePhoto(request.POST)
+    
+    return render(request, 'hello/home.html', {'form': form})
+
+
+# def startVisionTest(request):
+#     return redirect('hello/')
+
+
 def home(request):
     # return render(
     #     request,
@@ -24,8 +50,7 @@ def home(request):
 #     else:
 #         print("Error taking photo")
 
-from .forms import NameForm
-
+# from .forms import NameForm
 # def get_name(request):
 #     # if this is a POST request we need to process the form data
 #     if request.method == 'POST':
@@ -44,30 +69,3 @@ from .forms import NameForm
 #         form = NameForm()
 
 #     return render(request, 'hello/home.html', {'form': form})
-
-from .forms import takePhoto
-
-def take_photo(request):
-    if request.method == 'POST':
-        form = takePhoto(request.POST)      #photo button has been pressed
-        # time.sleep(5)
-
-        cam_port = 0
-        cam = cv2.VideoCapture(cam_port)
-        time.sleep(1)
-        result, image = cam.read()
-
-        if result:
-            # cv2.imshow("testImage", image)
-            cv2.imwrite("static/output2.png", image)
-            # cv2.waitKey(0)
-            # cv2.destroyWindow("testImage")
-            print("taking photo")
-        else:
-            print("No image. Try again")
-
-        return render(request, 'hello/home.html')
-    else:
-        form = takePhoto(request.POST)
-    
-    return render(request, 'hello/home.html', {'form': form})
