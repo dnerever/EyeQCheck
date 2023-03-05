@@ -1,0 +1,3 @@
+python -m pip install django
+python -m pip install numpy
+python -m pip install opencv-contrib-python

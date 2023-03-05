@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>EyeQTest</title>
+    </head>
+    <body>
+        <img src="{% static 'testImage.jpg' %}" alt="testing image1" width="600" height="500">
+        <form method="POST">
+            <button type="button">Take photo</button>
+        </form>
+    </body>
+</html>
