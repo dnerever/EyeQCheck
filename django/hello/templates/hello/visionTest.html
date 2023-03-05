@@ -21,19 +21,17 @@
                 <br>
                 <h3 align="center">Taking Vision test</h3>
                 <br>
-                <h3 align="center">User distance from camera: {{ user_distance }} (ft)</h3>
+                <h3 align="center">User distance from camera: {{ user_distance }} (inches)</h3>
                 <br>
                 <img class="mx-auto d-block" src="{% static 'testCapture.png' %}" alt="photo of user with capture of the reference square" align="center" width="600" height="500">
                 <br>
-                <img class="mx-auto d-block" src="{% static 'eyeChart.png' %}" alt="eye exam chart" align="center" width={{ scaled_height }} height={{ scaled_width }}>
-                <br>
-                <hr>
                 <form action="takePhoto" method="POST">
                     {% csrf_token %}
                     <input type="submit" name="takePhoto" value="Take Photo!">
                 </form>
                 <br>
-                <hr>
+                <img class="mx-auto d-block" src="{% static 'eyeChart.png' %}" alt="eye exam chart" align="center" width={{ scaled_height }} height={{ scaled_width }}>
+                <br>
                 <!-- <p>Button clicked:{{buttonClicked}}</p> -->
             </div>
         </div>

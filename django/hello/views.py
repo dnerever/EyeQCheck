@@ -36,11 +36,13 @@ def take_photo(request):
         contours,hierarchy=cv2.findContours(separated,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
         max_area = 0
         largest_contour = None
+        user_distance = -1
         for idx, contour in enumerate(contours):
             area = cv2.contourArea(contour)
             if area > max_area:
                 max_area = area
                 largest_contour = contour
+                pixel_width = math.sqrt(max_area)
                 if largest_contour.all() != None:
                     moment = cv2.moments(largest_contour)
                     if moment["m00"] > 1000:
@@ -52,6 +54,7 @@ def take_photo(request):
                         box = np.intp(box)
                         if(height>0.9*width and height<1.1*width):
                             cv2.drawContours(capture,[box], 0, (0, 0, 255), 2)
+                            user_distance = 24*92/pixel_width
                         else:
                             cv2.drawContours(capture,[box], 0, (255, 0, 0), 2)
 
@@ -64,7 +67,7 @@ def take_photo(request):
         distForm = UserDistanceValue(request.POST)
         obj = userDistance()
         # obj.distance = (width + height)/2       #saves the distance as an average of the box height & width
-        obj.distance = math.sqrt(max_area)
+        obj.distance = user_distance
         obj.save()
         print("-------------Saved distance-------------")
 
@@ -80,7 +83,7 @@ def startVisionTest(request):
     #read saved distance
     finalDistance = max(userDistance.objects.all(), key=id).distance
     # print("Side length:" + str(finalDistance))
-    scale = 2
+    scale = 2/3*finalDistance/30
     eyeChartHeight = 698
     eyeChartWidth = 67
     eyeChartHeightScaled = eyeChartHeight * scale
