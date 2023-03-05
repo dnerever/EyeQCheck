@@ -58,7 +58,14 @@ for idx, contour in enumerate(contours):
 
 if user_distance != 0:
     print("User Distance: "+ str(user_distance)+ " inches")
+    eye_chart = cv2.imread("eyechart.png")
+    h, w = eye_chart.shape[:2]
+    print(str(h)+" "+str(w))
+    new_h, new_w = int((2/3)*h*(user_distance/12)), int((2/3)*w*(user_distance/12)) 
+    resizeImg = cv2.resize(eye_chart, (new_w, new_h))
+    cv2.imshow("resiezed", resizeImg)
 else:
     print("Cannot find squares, please retake picture!")
 cv2.imshow("capture", capture)
+
 cv2.waitKey()
