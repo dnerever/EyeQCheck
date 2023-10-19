@@ -5,3 +5,4 @@
 
 #Ignore the django production .venv
 djangoProduction/.venv/
+django/.venv/
